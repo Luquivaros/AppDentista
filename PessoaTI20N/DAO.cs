@@ -24,7 +24,6 @@ namespace PessoaTI20N
             try
             {
                 conexao.Open();//Abrir a conexão
-                MessageBox.Show("Conectado!");
             }
             catch(Exception ex)
             {
