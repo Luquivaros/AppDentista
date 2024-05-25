@@ -10,8 +10,9 @@ using System.Windows.Forms;
 
 namespace PessoaTI20N
 {
-    public partial class Form1 : Form
+    public partial class Form1: Form
     {
+        Agendar agd;
         Cadastrar cad;
         Consultar con;
         Atualizar atu;
@@ -44,5 +45,11 @@ namespace PessoaTI20N
         {
             exc.ShowDialog();
         }//fim do excluir
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            agd = new Agendar();//Consultar ATUALIZADAS!
+            agd.ShowDialog();
+        }//fim do agendar
     }//fim da classe
 }//fim do projeto

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,5 +94,64 @@ namespace PessoaTI20N
             string resultado = sql.ExecuteNonQuery() + " Excluído!";
             return resultado;
         }//fim do excluir
+
+        // Método para agendar um compromisso para uma pessoa no banco de dados
+        public string Agendar(long cpf, DateTime data, string descricao)
+        {
+            // Monta a query SQL para inserir um novo agendamento na tabela 'agendamento'
+            string query = $"Insert into agendamento(cpf_pessoa, data, descricao) values" +
+                           $"('{cpf}', '{data.ToString("yyyy-MM-dd HH:mm:ss")}', '{descricao}')";
+
+            // Cria um novo comando MySQL utilizando a query e a conexão
+            MySqlCommand sql = new MySqlCommand(query, conexao);
+
+            // Executa o comando SQL e retorna a mensagem de sucesso
+            string resultado = sql.ExecuteNonQuery() + " Agendamento criado!";
+            return resultado;
+        }
+
+        // Método para obter os agendamentos de uma pessoa do banco de dados
+        public DataTable ObterAgendamentos(long cpf)
+        {
+            // Cria um DataTable para armazenar os agendamentos
+            DataTable agendamentos = new DataTable();
+
+            try
+            {
+                // Define as colunas do DataTable
+                agendamentos.Columns.Add("Data", typeof(DateTime));
+                agendamentos.Columns.Add("Descrição", typeof(string));
+
+                // Query SQL para selecionar os agendamentos da pessoa com o CPF especificado
+                string query = $"select data, descricao from agendamento where cpf_pessoa = '{cpf}'";
+
+                // Cria um novo comando MySQL utilizando a query e a conexão
+                MySqlCommand sql = new MySqlCommand(query, conexao);
+
+                // Executa o comando SQL e obtém um leitor para ler os resultados
+                MySqlDataReader leitura = sql.ExecuteReader();
+
+                // Loop para ler os resultados do leitor
+                while (leitura.Read())
+                {
+                    // Obtém a data e a descrição do agendamento
+                    DateTime data = Convert.ToDateTime(leitura["data"]);
+                    string descricao = leitura["descricao"].ToString();
+
+                    // Adiciona uma nova linha ao DataTable com a data e a descrição
+                    agendamentos.Rows.Add(data, descricao);
+                }
+
+                // Fecha o leitor após terminar a leitura
+                leitura.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao obter agendamentos: " + ex.Message);
+            }
+
+            // Retorna o DataTable com os agendamentos
+            return agendamentos;
+        }
     }//fim da classe
 }//fim do projeto

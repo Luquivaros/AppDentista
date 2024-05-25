@@ -98,6 +98,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendarTela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgendarTela.Designer.cs">
+      <DependentUpon>AgendarTela.cs</DependentUpon>
+    </Compile>
     <Compile Include="Atualizar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AgendarTela.resx">
+      <DependentUpon>AgendarTela.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Atualizar.resx">
       <DependentUpon>Atualizar.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +164,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Agendar.cs [Design]">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Agendar.Designer.cs [Design]" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -43,5 +43,10 @@ namespace PessoaTI20N
         {
             this.Close();
         }//fim do botão cancelar
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }//fim da classe
 }//fim do projeto

@@ -53,5 +53,10 @@ namespace PessoaTI20N
             dataGridView1.AllowUserToResizeRows = false;//Usuário modificar linhas
             dataGridView1.ColumnCount = 4;//Quantidade de colunas
         }//fim do método
+
+        private void Consultar_Load(object sender, EventArgs e)
+        {
+
+        }
     }//fim da classe
 }//fim do projeto
